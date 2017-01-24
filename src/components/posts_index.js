@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { fetchPosts } from '../actions/index';
+import { Link } from 'react-router';
 
 class PostsIndex extends Component {
 
@@ -16,7 +15,14 @@ class PostsIndex extends Component {
 
     render(){
         return (
-            <div>List of blog posts</div>
+            <div>
+                <div className="text-xs-right">
+                    <Link to="/post/new" className="btn btn-primary">
+                        Add a post
+                    </Link>
+                </div>
+                List of blog posts
+            </div>
         );
     }
 
@@ -24,4 +30,4 @@ class PostsIndex extends Component {
 
 // null because we dont have the state yet
 // gives access to this.props.fetchPosts
-export default connect (null, { fetchPosts })(PostsIndex);
+export default connect ( null, { fetchPosts }) (PostsIndex);
