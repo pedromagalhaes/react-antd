@@ -1,15 +1,32 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes} from 'react';
 import { reduxForm } from 'redux-form';
 import { createPost } from '../actions/index';
+import { Link } from 'react-router';
 
 class PostsNew extends Component{
+
+    // i want access to this propperty from a parent component
+    static contextTypes = {
+        router: PropTypes.object
+    };
+
+    // we call onSubmit
+    onSubmit(props){
+        // we call our action creator with a promise
+        this.props.createPost(props)
+            .then(() => {
+                // only called when the post is successfully created
+                // we call our router and a new path to navigate
+                this.context.router.push('/');
+            });
+    }
 
     render(){
 
         const { fields: { title, categories, content }, handleSubmit } = this.props;
 
         return (
-            <form onSubmit={handleSubmit(this.props.createPost)} >
+            <form onSubmit={handleSubmit(this.onSubmit.bind(this))} >
 
                 <h3>Create a new post</h3>
 
@@ -32,6 +49,7 @@ class PostsNew extends Component{
                 </div>
 
                 <button type="submit" className="btn btn-primary">Submit</button>
+                <Link to="/" className="btn btn-danger">Cancel</Link>
 
             </form>
         )
@@ -40,6 +58,7 @@ class PostsNew extends Component{
 
 
 function validate(values){
+
     const errors = {}
 
     if(!values.title){
@@ -53,13 +72,16 @@ function validate(values){
     }
 
     return errors;
+
 }
 
 // connect: first argument is mapStateToProps, 2nd is mapDispatchToProps
 // reduxForm: 1st is form config, 2nd is mapStateToProps, 3rd is mapDispatchToProps
 
 export default reduxForm({
+
     form: 'PostsNewForm',
     fields: ['title', 'categories', 'content'],
     validate
+
 }, null, {createPost} ) (PostsNew);
