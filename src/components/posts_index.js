@@ -9,9 +9,10 @@ class PostsIndex extends Component {
     // react calls automatically whenever the component is about to render for the first time
     // is only called once, good place to fetch our component Data
     componentWillMount(){
-        this.props.fetchPosts();
+        this.props.fetchPosts(); // action creator
     }
 
+    // render list posts
     renderPosts(){
         return this.props.posts.map((post) => {
             return(
@@ -29,9 +30,7 @@ class PostsIndex extends Component {
         return (
             <div>
                 <div className="text-xs-right">
-                    <Link to="/post/new" className="btn btn-primary">
-                        Add a post
-                    </Link>
+                    <Link to="/post/new" className="btn btn-primary">Add a post</Link>
                 </div>
                 <h3>Posts</h3>
                 <ul className="list-group">

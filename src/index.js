@@ -12,6 +12,8 @@ const createStoreWithMiddleware = applyMiddleware(
     promise
 )(createStore);
 
+
+// we define router <Router history={browserHistory} routes={routes}/>
 ReactDOM.render(
     <Provider store={createStoreWithMiddleware(reducers)}>
         <Router history={browserHistory} routes={routes}/>

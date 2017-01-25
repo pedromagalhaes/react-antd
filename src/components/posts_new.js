@@ -22,10 +22,10 @@ class PostsNew extends Component{
     }
 
     render(){
-
         const { fields: { title, categories, content }, handleSubmit } = this.props;
 
         return (
+
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))} >
 
                 <h3>Create a new post</h3>
@@ -56,10 +56,9 @@ class PostsNew extends Component{
     }
 }
 
-
 function validate(values){
 
-    const errors = {}
+    const errors = {};
 
     if(!values.title){
         errors.title = 'Enter a username';
@@ -72,16 +71,12 @@ function validate(values){
     }
 
     return errors;
-
 }
 
 // connect: first argument is mapStateToProps, 2nd is mapDispatchToProps
 // reduxForm: 1st is form config, 2nd is mapStateToProps, 3rd is mapDispatchToProps
-
 export default reduxForm({
-
     form: 'PostsNewForm',
     fields: ['title', 'categories', 'content'],
     validate
-
 }, null, {createPost} ) (PostsNew);

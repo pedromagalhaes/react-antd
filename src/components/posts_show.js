@@ -16,9 +16,10 @@ class PostsShow extends Component{
         this.props.fetchPost(this.props.params.id);
     }
 
+    // delete the post
     onDeleteClick(){
         this.props.deletePost(this.props.params.id).then(() => {
-            this.context.router.push('/');
+            this.context.router.push('/'); // navigate after to index route
         });
     }
 
