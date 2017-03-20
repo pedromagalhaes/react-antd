@@ -1,0 +1,18 @@
+.core {
+  &-sider {
+    background-color: #FFF;
+  }
+  &-content {
+    margin: 0 16px;
+    & > div {
+      padding: 24px;
+      background: #FFF;
+      min-height: 500px;
+      margin-top: 20px;
+    }
+  }
+  &-footer {
+    text-align: center;
+  }
+}
+

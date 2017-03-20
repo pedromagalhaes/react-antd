@@ -1,0 +1,16 @@
+version: '2'
+services:
+  web-client:
+    build: .
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/home/node/project
+      - /home/node/project/node_modules
+  apiserver:
+    build: ./apiserver
+    ports:
+      - 3001:3001
+    volumes:
+      - ./apiserver:/home/node/project
+      - /home/node/project/node_modules

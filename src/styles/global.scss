@@ -1,0 +1,171 @@
+.floatActionOnBottomRight {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+}
+
+.materialSubmitBtn {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0
+}
+
+/* row margin */
+.ant-form-item {
+  margin-bottom: 24px;
+}
+
+
+/*
+Sidebar
+*/
+
+.ant-layout.ant-layout-has-sider {
+  // Todo: needs to be tested by Safari browser
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  height: 100%;
+  .trigger {
+    font-size: 18px;
+    line-height: 64px;
+    padding: 0 16px;
+    cursor: pointer;
+    transition: color .3s;
+    &:hover {
+      color: #108ee9;
+    }
+  }
+  .logo {
+    height: 32px;
+    background: #000;
+    border-radius: 6px;
+    margin: 16px;
+  }
+  .ant-layout-sider-collapsed{
+    .anticon {
+      font-size: 16px;
+      margin-left: 8px;
+    }
+    .nav-text {
+      display: none;
+    }
+    .ant-menu-submenu-title:after {
+      display: none;
+    }
+  }
+}
+
+/*
+Content {this.props.children}
+*/
+
+.ant-layout-content{
+  margin: 0 16px;
+  &__children{
+    padding: 24px;
+    background: #fff;
+    min-height: 560px;
+  }
+}
+
+
+/*
+Ant Tables
+ */
+
+// todo: review the loading order of css in the project (antd overwrites default styles)
+.ant-table-small .ant-table-thead>tr>th {
+  background: #f7f7f7 !important;
+}
+
+.ant-table-small .ant-table-body>table, .ant-table-small .ant-table-header>table {
+  padding:0 !important;
+}
+
+.ant-table-tbody>tr>td, .ant-table-thead>tr>th{
+  word-break: normal !important;
+}
+
+/*
+Ant Pagination
+ */
+
+.ant-pagination{
+  margin-top: 25px;
+  float: right;
+}
+
+
+/*
+Breadcrumb
+*/
+
+.ant-breadcrumb{
+  margin: 12px 0;
+}
+
+
+/*
+Autocomplete
+*/
+
+.certain-category-search.ant-select-auto-complete .ant-input-affix-wrapper .ant-input-suffix {
+  right: 12px;
+}
+
+.certain-category-search-dropdown .ant-select-dropdown-menu-item-group-title {
+  color: #666;
+  font-weight: bold;
+}
+
+.certain-category-search-dropdown .ant-select-dropdown-menu-item-group {
+  border-bottom: 1px solid #F6F6F6;
+}
+
+.certain-category-search-dropdown .ant-select-dropdown-menu-item {
+  padding-left: 16px;
+}
+
+.certain-category-search-dropdown .ant-select-dropdown-menu-item.show-all {
+  text-align: center;
+  cursor: default;
+}
+
+.certain-category-search-dropdown .ant-select-dropdown-menu {
+  max-height: 300px;
+}
+
+.certain-search-item-count {
+  position: absolute;
+  color: #999;
+  right: 16px;
+}
+
+.certain-category-search.ant-select-focused .certain-category-icon {
+  color: #108ee9;
+}
+
+.certain-category-icon {
+  color: #6E6E6E;
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  font-size: 16px;
+}
+
+
+/*
+Footer
+*/
+
+.ant-layout-footer{
+  text-align: center;
+}
+
+

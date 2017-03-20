@@ -1,0 +1,21 @@
+{
+  "name": "Note",
+  "properties": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "thumbnail": {
+      "type": "string"
+    },    
+    "content": {
+      "type": "string"
+    },
+    "featured": {
+      "type": "boolean"
+    },
+    "date": {
+      "type": "date"
+    }    
+  }
+}

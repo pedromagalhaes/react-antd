@@ -1,7 +1,13 @@
-/node_modules
-bundle.js
-npm-debug.log
+.DS_STORE
+*.log
 
-# IntelliJ
-*.iml
-/.idea
+node_modules
+
+dist
+coverage
+
+.idea/
+
+# Emacs
+*~
+\#*\#
