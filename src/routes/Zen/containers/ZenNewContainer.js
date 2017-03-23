@@ -1,14 +1,16 @@
 import { connect } from 'react-redux'
-
-import { updatePageTitle, toggleSnackbar, resetSnackbar } from '../../../store/globalStore'
+import { fetchZenCategory } from '../modules/zenNew'
+import { updatePageTitle } from '../../../store/globalStore'
 import ZenNew from '../components/ZenNew'
 
 const mapActionCreators = {
-  updatePageTitle,
-  toggleSnackbar,
-  resetSnackbar
+  fetchZenCategory,
+  updatePageTitle
 }
 
-const mapStateToProps = state => ({ ...state.global })
+const mapStateToProps = state => ({
+  ...state.global,
+  zen: state.zenNew
+})
 
 export default connect(mapStateToProps, mapActionCreators)(ZenNew)

@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { message, Form, Input, Button, Checkbox, DatePicker } from 'antd'
+import { message, Form, Input, Button, Checkbox, DatePicker, Select } from 'antd'
 import moment from 'moment'
 
 import { API_ENDPOINT_URL, DATE_FORMAT } from '../../../constants/Config'
@@ -15,9 +15,16 @@ class ZenForm extends React.Component {
       resetFields: React.PropTypes.func.isRequired,
       getFieldDecorator: React.PropTypes.func
     }).isRequired,
+    zen: React.PropTypes.shape({
+      category: React.PropTypes.array
+    }),
     router: React.PropTypes.shape({
       push: React.PropTypes.func.isRequired
-    }).isRequired
+    }).isRequired,
+    fetchZenCategory: React.PropTypes.func
+  }
+  componentWillMount() {
+    this.props.fetchZenCategory()
   }
 
   componentDidMount() {
@@ -46,10 +53,19 @@ class ZenForm extends React.Component {
   }
 
   render() {
+    if (!this.props.zen.category) {
+      return <div>Loading...</div>
+    }
+
     const { getFieldDecorator } = this.props.form
     const formItemLayout = {
-      labelCol: { span: 1 },
-      wrapperCol: { span: 14 }
+      labelCol: { span: 2 },
+      wrapperCol: { span: 8 }
+    }
+
+    const menu = (prop) => {
+      const item = prop.map(i => (<Select.Option key={i.id} value={i.title}>{i.title}</Select.Option>))
+      return (<Select placeholder='Select category'>{item}</Select>)
     }
 
     return (
@@ -59,6 +75,20 @@ class ZenForm extends React.Component {
             rules: [{ required: true, message: 'Please input the Title!' }]
           })(
             <Input placeholder='Title' />
+          )}
+        </FormItem>
+        <FormItem {...formItemLayout} label='Thumbnail'>
+          {getFieldDecorator('thumbnail', {
+            rules: [{ required: true, message: 'Please input the Thumbnail!' }]
+          })(
+            <Input placeholder='Thumbnail' />
+          )}
+        </FormItem>
+        <FormItem {...formItemLayout} label='Category'>
+          {getFieldDecorator('category', {
+            rules: [{ required: true, message: 'Please input the Category!' }]
+          })(
+            menu(this.props.zen.category)
           )}
         </FormItem>
         <FormItem {...formItemLayout} label='Date'>
@@ -96,6 +126,6 @@ class ZenForm extends React.Component {
   }
 }
 
-const NormalLoginForm = Form.create()(ZenForm)
+const ZenNewForm = Form.create()(ZenForm)
 
-export default NormalLoginForm
+export default ZenNewForm

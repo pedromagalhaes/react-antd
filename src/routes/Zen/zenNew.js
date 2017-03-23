@@ -9,12 +9,10 @@ export default store => ({
     ], (require) => {
       const Zen = require('./containers/ZenNewContainer').default
       const zenReducer = require('./modules/zenNew').default
-
       injectReducer(store, {
-        key: 'zen-new',
+        key: 'zenNew',
         reducer: zenReducer
       })
-
       next(null, Zen)
     })
   }

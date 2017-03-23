@@ -18,3 +18,9 @@ export const RECIEVE_ZEN_EDIT = 'RECIEVE_ZEN_EDIT'
 // ------------------------------------
 export const REQUEST_DELETE_ZEN = 'REQUEST_DELETE_ZEN'
 export const COMPLETED_DELETE_ZEN = 'COMPLETED_DELETE_ZEN'
+
+// ------------------------------------
+// ZEN Category Actions
+// ------------------------------------
+export const REQUEST_ZEN_CATEGORY = 'REQUEST_ZEN_CATEGORY'
+export const RECIEVE_ZEN_CATEGORY = 'RECIEVE_ZEN_CATEGORY'

@@ -1,0 +1,9 @@
+{
+  "name": "Category",
+  "properties": {
+    "title": {
+      "type": "string",
+      "required": true
+    }    
+  }
+}

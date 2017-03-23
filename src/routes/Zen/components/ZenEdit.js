@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { message, Form, Input, Button, Checkbox, DatePicker } from 'antd'
+import { message, Form, Input, Button, Checkbox, DatePicker, Select } from 'antd'
 import moment from 'moment'
 
 import { API_ENDPOINT_URL, DATE_FORMAT } from '../../../constants/Config'
@@ -18,13 +18,16 @@ class ZenEdit extends React.Component {
     router: React.PropTypes.shape({
       push: React.PropTypes.func.isRequired
     }).isRequired,
+    category: React.PropTypes.array,
     params: React.PropTypes.object.isRequired,
     note: React.PropTypes.object.isRequired,
-    fetchZenEdit: React.PropTypes.func.isRequired
+    fetchZenEdit: React.PropTypes.func.isRequired,
+    fetchZenCategory: React.PropTypes.func
   }
 
   componentWillMount() {
     this.props.fetchZenEdit(this.props.params.id)
+    this.props.fetchZenCategory()
   }
 
   componentDidMount() {
@@ -53,14 +56,19 @@ class ZenEdit extends React.Component {
 
   render() {
     const { note } = this.props.note
-    if (!note) {
+    const category = this.props.note.category
+    if (!note || !category) {
       return <div>Loading...</div>
     }
     const formItemLayout = {
-      labelCol: { span: 1 },
+      labelCol: { span: 2 },
       wrapperCol: { span: 14 }
     }
     const { getFieldDecorator } = this.props.form
+    const menu = (prop) => {
+      const item = prop.map(i => (<Select.Option key={i.id} value={i.title}>{i.title}</Select.Option>))
+      return (<Select>{item}</Select>)
+    }
 
     return (
       <Form onSubmit={this.handleSubmit} className='new-note-form'>
@@ -70,6 +78,22 @@ class ZenEdit extends React.Component {
             initialValue: note.title
           })(
             <Input placeholder='Title' />
+          )}
+        </FormItem>
+        <FormItem {...formItemLayout} label='Thumbnail'>
+          {getFieldDecorator('thumbnail', {
+            rules: [{ required: true, message: 'Please input the Thumbnail!' }],
+            initialValue: note.thumbnail
+          })(
+            <Input placeholder='Thumbnail' />
+          )}
+        </FormItem>
+        <FormItem {...formItemLayout} label='Category'>
+          {getFieldDecorator('category', {
+            rules: [{ required: true, message: 'Please input the Category!' }],
+            initialValue: note.category
+          })(
+            menu(category)
           )}
         </FormItem>
         <FormItem {...formItemLayout} label='Date'>

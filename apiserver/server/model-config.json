@@ -34,5 +34,8 @@
   },
   "Note": {
     "dataSource": "mydb"
+  },
+  "Category": {
+    "dataSource": "mydb"
   }
 }

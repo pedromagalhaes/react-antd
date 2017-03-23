@@ -1,15 +1,16 @@
 import { connect } from 'react-redux'
-import { fetchZenEdit } from '../modules/zenEdit'
-
+import { fetchZenEdit, fetchZenCategory } from '../modules/zenEdit'
 import { updatePageTitle } from '../../../store/globalStore'
 import ZenEdit from '../components/ZenEdit'
 
 const mapActionCreators = {
   fetchZenEdit,
+  fetchZenCategory,
   updatePageTitle
 }
 
 const mapStateToProps = state => ({
+  ...state.global,
   note: state.note
 })
 

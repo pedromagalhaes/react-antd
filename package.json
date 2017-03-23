@@ -2,7 +2,7 @@
   "name": "template-react-redux",
   "version": "0.0.1",
   "description": "Get started with React, Redux, and React-Router!",
-  "author": "Pedro Magalhaes <pmagalhaes@dminc.com>",
+  "author": "Murat Karacam <mkaracam@dminc.com>",
   "main": "index.js",
   "engines": {
     "node": ">=4.5.0",

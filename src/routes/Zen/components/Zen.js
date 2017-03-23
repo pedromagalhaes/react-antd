@@ -6,7 +6,7 @@ const tableParams = {
   bordered: false,
   limit: 10,
   offset: 0,
-  size: 'middle',
+  size: 'small',
   sortKey: 'id',
   sortDirection: 'asc'
 }
@@ -22,7 +22,8 @@ export default class Zen extends React.Component {
       note: React.PropTypes.array,
       zens: React.PropTypes.array,
       count: React.PropTypes.number,
-      currentPage: React.PropTypes.number
+      currentPage: React.PropTypes.number,
+      category: React.PropTypes.array
     }).isRequired,
     fetchZen: React.PropTypes.func.isRequired,
     deleteZen: React.PropTypes.func,
@@ -46,39 +47,51 @@ export default class Zen extends React.Component {
     }
     this.tableColumns = [
       {
+        key: 'thumbnail',
+        dataIndex: 'thumbnail',
+        title: 'Thumbnail',
+        sorter: (a, b) => a.title.length - b.title.length,
+        render: (text, record) => {
+          const thumbnail = record.thumbnail ? (<img src={record.thumbnail} width={50} height={50} alt='' />) : null
+          return thumbnail
+        }
+      },
+      {
         key: 'id',
         dataIndex: 'id',
         title: 'ID',
-        width: '10%',
         sorter: (a, b) => a.id - b.id
       },
       {
         key: 'title',
         dataIndex: 'title',
         title: 'Title',
-        sorter: (a, b) => a.title.length - b.title.length,
-        width: '30%'
+        sorter: (a, b) => a.title.length - b.title.length
+      },
+      {
+        key: 'category',
+        dataIndex: 'category',
+        title: 'Category',
+        sorter: (a, b) => a.title.length - b.title.length
       },
       {
         key: 'date',
         dataIndex: 'date',
         title: 'Date',
         sorter: (a, b) => a.date.length - b.date.length,
-        width: '10%',
         render: text => (<span>{moment(text).format('YYYY-MM-DD HH:mm:ss')}</span>)
       },
       {
         key: 'content',
         dataIndex: 'content',
         title: 'Content',
-        sorter: (a, b) => a.content.length - b.content.length,
-        width: '30%'
+        width: '50%',
+        sorter: (a, b) => a.content.length - b.content.length
       },
       {
         key: 'featured',
         dataIndex: 'featured',
         title: 'Featured',
-        width: '10%',
         sorter: (a, b) => a.featured - b.featured,
         render: (text, record) => (
           <span>
@@ -88,7 +101,6 @@ export default class Zen extends React.Component {
       },
       { key: 'actions',
         title: 'Actions',
-        width: '10%',
         render: (text, record) => (
           <span>
             <Button
@@ -143,7 +155,8 @@ export default class Zen extends React.Component {
       offset: (pagination.current * limit) - limit,
       order: sortOrder,
       limit,
-      current: pagination.current
+      current: pagination.current,
+      where: this.params.where
     }
     this.props.fetchZen(params)
   }
